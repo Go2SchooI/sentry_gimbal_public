@@ -1,5 +1,4 @@
 MDK-ARM/C_Board_Standard_Robot/
-/node_modules
 *.d
 *.o
 *.o.d

@@ -6,7 +6,7 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Nov 16 17:40:57 2023
+# Make data base, printed on Thu Nov 16 18:23:08 2023
 
 # Variables
 
@@ -112,7 +112,7 @@ GENICAM_GENTL32_PATH = C:\Program Files\Daheng Imaging\GalaxySDK\GenTL\Win32
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_29252_YHFVKAXQYKOAIKXK
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_31596_AMTRJSDOYNOTIMQU
 # environment
 SW_SIM_MPIT = INTELMPI
 # makefile (from 'Makefile', line 101)
@@ -270,7 +270,7 @@ PROCESSOR_LEVEL = 23
 # environment
 FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
 # environment
-VSCODE_PID = 29252
+VSCODE_PID = 31596
 # environment
 USERDOMAIN_ROAMINGPROFILE = LAPTOP-184AECES
 # variable set hash-table stats:
@@ -283,7 +283,7 @@ USERDOMAIN_ROAMINGPROFILE = LAPTOP-184AECES
 # Directories
 
 # Components (key d:/RoboMaster2024/Sentry_Gimbal_2023-master/Components, mtime 1693385856): 14 files, no impossibilities.
-# . (key d:/RoboMaster2024/Sentry_Gimbal_2023-master, mtime 1700127568): 21 files, no impossibilities.
+# . (key d:/RoboMaster2024/Sentry_Gimbal_2023-master, mtime 1700129702): 23 files, no impossibilities.
 # Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F (key d:/RoboMaster2024/Sentry_Gimbal_2023-master/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F, mtime 1693385856): 4 files, no impossibilities.
 # Application (key d:/RoboMaster2024/Sentry_Gimbal_2023-master/Application, mtime 1693385856): 20 files, no impossibilities.
 # Src (key d:/RoboMaster2024/Sentry_Gimbal_2023-master/Src, mtime 1693385856): 14 files, no impossibilities.
@@ -294,10 +294,11 @@ USERDOMAIN_ROAMINGPROFILE = LAPTOP-184AECES
 # Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang (key d:/RoboMaster2024/Sentry_Gimbal_2023-master/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang, mtime 1693385856): 3 files, no impossibilities.
 # Components/Devices (key d:/RoboMaster2024/Sentry_Gimbal_2023-master/Components/Devices, mtime 1693385856): 9 files, no impossibilities.
 # Components/Algorithm (key d:/RoboMaster2024/Sentry_Gimbal_2023-master/Components/Algorithm, mtime 1693385856): 9 files, no impossibilities.
-# Drivers/STM32F4xx_HAL_Driver/Src (key d:/RoboMaster2024/Sentry_Gimbal_2023-master/Drivers/STM32F4xx_HAL_Driver/Src, mtime 1693385856): 20 files, no impossibilities.
+# Drivers/STM32F4xx_HAL_Driver/Src (key d:/RoboMaster2024/Sentry_Gimbal_2023-mas 
+ter/Drivers/STM32F4xx_HAL_Driver/Src, mtime 1693385856): 20 files, no impossibilities.
 # Bsp (key d:/RoboMaster2024/Sentry_Gimbal_2023-master/Bsp, mtime 1693385856): 12 files, no impossibilities.
 
-# 150 files, no impossibilities in 14 directories.
+# 152 files, no impossibilities in 14 directories.
 
 # Implicit Rules
 
@@ -555,8 +556,7 @@ build/kalman_filter.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-# Not a ta 
-rget:
+# Not a target:
 build/stm32f4xx_it.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -782,18 +782,19 @@ build/BMI088Middleware.o:
 # Load=71/1024=7%, Rehash=0, Collisions=10/183=5%
 # VPATH Search Paths
 
-vpath %.c Application;Bsp;Components;Components/Algorithm;Components/Controller;Components/Devices;Drivers/STM32F4xx_HAL_Driver/Src;Middlewares/Third_Party/FreeRTOS/Source;Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F;Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang;Src
+vpath %.c Application;Bsp;Components;Components/Algorithm;Components/Controller;Components/Devices;Drivers/STM32F4xx_HAL_Driver/Src;Middlewares/Third_Party/FreeRTOS/Source;Middlewares/Third_Party/Fre 
+eRTOS/Source/CMSIS_RTOS;Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F;Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang;Src
 
 # 1 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 208 / storage = 3560 B / avg = 17 B
-# current buf: size = 8174 B / used = 3560 B / count = 208 / avg = 17 B
+# strcache buffers: 1 (0) / strings = 210 / storage = 3575 B / avg = 17 B
+# current buf: size = 8174 B / used = 3575 B / count = 210 / avg = 17 B
 
-# strcache performance: lookups = 278 / hit rate = 25%
+# strcache performance: lookups = 280 / hit rate = 25%
 # hash-table stats:
-# Load=208/8192=3%, Rehash=0, Collisions=17/278=6%
-# Finished Make data base on Thu Nov 16 17:40:57 2023
+# Load=210/8192=3%, Rehash=0, Collisions=17/280=6%
+# Finished Make data base on Thu Nov 16 18:23:08 2023
 
  
