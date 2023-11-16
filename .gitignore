@@ -1,0 +1,15 @@
+MDK-ARM/C_Board_Standard_Robot/
+/node_modules
+*.d
+*.o
+*.o.d
+*.dmp
+*.list
+*.bin
+*.crf
+*.map
+*.lst
+.*.un~
+.*.swp
+*.gch
+.idea/

@@ -1,0 +1,95 @@
+
+
+Breakpoint=D:/RoboMaster2023/RMUC_Sentry_2023/Sentry_Gimbal_2023_spinning/Bsp/bsp_CAN.c:151, State=BP_STATE_DISABLED
+Breakpoint=D:/RoboMaster2023/RMUC_Sentry_2023/Sentry_Gimbal_2023_spinning/Components/Devices/BMI088driver.c:142:5, State=BP_STATE_DISABLED
+GraphedExpression="(AimAssist).TargetEarthFrame[0]", Color=#a00909
+GraphedExpression="xyPositonError", Color=#09a01b
+GraphedExpression="(TgtPosPredict).Position[0]", Color=#09a087
+GraphedExpression="ChiSquare", Color=#0984a0
+GraphedExpression="((AimAssist).CtrlFrameFull).rx", DisplayFormat=DISPLAY_FORMAT_DEC, Color=#0964a0
+OpenDocument="main.c", FilePath="D:/RoboMaster2023/RMUC_Sentry_2023/Sentry_Gimbal_2023_spinning/Src/main.c", Line=66
+OpenDocument="aimassist_task.c", FilePath="D:/RoboMaster2023/RMUC_Sentry_2023/Sentry_Gimbal_2023_spinning/Application/aimassist_task.c", Line=567
+OpenDocument="tasks.c", FilePath="D:/RoboMaster2023/RMUC_Sentry_2023/Sentry_Gimbal_2023_spinning/Middlewares/Third_Party/FreeRTOS/Source/tasks.c", Line=3360
+OpenDocument="startup_stm32f407xx.s", FilePath="D:/RoboMaster2023/RMUC_Sentry_2023/Sentry_Gimbal_2023_spinning/startup_stm32f407xx.s", Line=48
+OpenDocument="stm32f4xx_hal.c", FilePath="D:/RoboMaster2023/RMUC_Sentry_2023/Sentry_Gimbal_2023_spinning/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c", Line=311
+OpenDocument="bsp_CAN.c", FilePath="D:/RoboMaster2023/RMUC_Sentry_2023/Sentry_Gimbal_2023_spinning/Bsp/bsp_CAN.c", Line=160
+OpenDocument="stm32f4xx_hal_can.c", FilePath="D:/RoboMaster2023/RMUC_Sentry_2023/Sentry_Gimbal_2023_spinning/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_can.c", Line=1716
+OpenDocument="gimbal_task.c", FilePath="D:/RoboMaster2023/RMUC_Sentry_2023/Sentry_Gimbal_2023_spinning/Application/gimbal_task.c", Line=488
+OpenDocument="shoot_task.c", FilePath="D:/RoboMaster2023/RMUC_Sentry_2023/Sentry_Gimbal_2023_spinning/Application/shoot_task.c", Line=185
+OpenDocument="stm32f4xx_hal_spi.c", FilePath="D:/RoboMaster2023/RMUC_Sentry_2023/Sentry_Gimbal_2023_spinning/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c", Line=1103
+OpenDocument="bsp_dwt.c", FilePath="D:/RoboMaster2023/RMUC_Sentry_2023/Sentry_Gimbal_2023_spinning/Bsp/bsp_dwt.c", Line=33
+OpenDocument="gimbal_task.h", FilePath="D:/RoboMaster2023/RMUC_Sentry_2023/Sentry_Gimbal_2023_spinning/Application/gimbal_task.h", Line=54
+OpenDocument="controller.c", FilePath="D:/RoboMaster2023/RMUC_Sentry_2023/Sentry_Gimbal_2023_spinning/Components/Controller/controller.c", Line=619
+OpenDocument="shoot_task.h", FilePath="D:/RoboMaster2023/RMUC_Sentry_2023/Sentry_Gimbal_2023_spinning/Application/shoot_task.h", Line=0
+OpenDocument="system_identification.c", FilePath="D:/RoboMaster2023/RMUC_Sentry_2023/Sentry_Gimbal_2023_spinning/Components/system_identification.c", Line=28
+OpenDocument="aimassist_task.h", FilePath="D:/RoboMaster2023/RMUC_Sentry_2023/Sentry_Gimbal_2023_spinning/Application/aimassist_task.h", Line=50
+OpenDocument="stm32f4xx_it.c", FilePath="D:/RoboMaster2023/RMUC_Sentry_2023/Sentry_Gimbal_2023_spinning/Src/stm32f4xx_it.c", Line=89
+OpenDocument="motor.c", FilePath="D:/RoboMaster2023/RMUC_Sentry_2023/Sentry_Gimbal_2023_spinning/Application/motor.c", Line=75
+OpenDocument="freertos.c", FilePath="D:/RoboMaster2023/RMUC_Sentry_2023/Sentry_Gimbal_2023_spinning/Src/freertos.c", Line=225
+OpenDocument="QuaternionEKF.c", FilePath="D:/RoboMaster2023/RMUC_Sentry_2023/Sentry_Gimbal_2023_spinning/Components/Algorithm/QuaternionEKF.c", Line=215
+OpenDocument="ins_task.c", FilePath="D:/RoboMaster2023/RMUC_Sentry_2023/Sentry_Gimbal_2023_spinning/Application/ins_task.c", Line=73
+OpenDocument="detect_task.c", FilePath="D:/RoboMaster2023/RMUC_Sentry_2023/Sentry_Gimbal_2023_spinning/Application/detect_task.c", Line=0
+OpenToolbar="Debug", Floating=0, x=0, y=0
+OpenWindow="Source Files", DockArea=LEFT, x=0, y=0, w=381, h=919, TabPos=2, TopOfStack=0, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
+OpenWindow="Watched Data 1", DockArea=LEFT, x=0, y=0, w=381, h=919, TabPos=1, TopOfStack=0, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
+OpenWindow="Data Sampling", DockArea=RIGHT, x=0, y=1, w=1004, h=467, FilterBarShown=1, TotalValueBarShown=0, ToolBarShown=0, VisibleTab=0, UniformSampleSpacing=0
+OpenWindow="Timeline", DockArea=RIGHT, x=0, y=0, w=1004, h=467, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=1, DataPaneShown=1, PowerPaneShown=0, CodePaneShown=0, PinCursor="Cursor Movable", TimePerDiv="2 s", TimeStampFormat="Time", DataGraphDrawAsPoints=0, DataGraphLegendShown=1, DataGraphUniformSampleSpacing=0, DataGraphLegendPosition="0;0", PowerGraphDrawAsPoints=0, PowerGraphLegendShown=0, PowerGraphAvgFilterTime=Off, PowerGraphAvgFilterLen=Off, PowerGraphUniformSampleSpacing=0, PowerGraphLegendPosition="803;0", CodeGraphLegendShown=0, CodeGraphLegendPosition="817;0"
+OpenWindow="Watched Data 2", DockArea=LEFT, x=0, y=0, w=381, h=919, TabPos=0, TopOfStack=1, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
+TableHeader="Source Files", SortCol="File", SortOrder="ASCENDING", VisibleCols=["File";"Status";"Size";"#Insts";"Path"], ColWidths=[353;146;118;146;966]
+TableHeader="Watched Data 1", SortCol="Expression", SortOrder="ASCENDING", VisibleCols=["Expression";"Value";"Location";"Refresh"], ColWidths=[272;391;190;100]
+TableHeader="Data Sampling Table", SortCol="Index", SortOrder="ASCENDING", VisibleCols=["Index";"Time";" xyPositonError";" ChiSquare";" ((AimAssist).CtrlFrameFull).rx"], ColWidths=[100;100;100;100;100]
+TableHeader="Data Sampling Setup", SortCol="Expression", SortOrder="DESCENDING", VisibleCols=["Expression";"Value";"Min";"Max";"Average";"# Changes";"Min. Change";"Max. Change"], ColWidths=[231;100;126;134;100;100;107;107]
+TableHeader="Power Sampling", SortCol="Index", SortOrder="ASCENDING", VisibleCols=["Index";"Time";"Ch 0"], ColWidths=[100;100;100]
+TableHeader="Task List", SortCol="Name", SortOrder="ASCENDING", VisibleCols=["Name";"Run Count";"Priority";"Status";"Timeout";"Stack Info (Free / Size)";"ID";"Mutex Count";"Notified Value";"Notify State"], ColWidths=[110;110;110;110;110;110;110;110;110;110]
+TableHeader="RegisterSelectionDialog", SortCol="None", SortOrder="ASCENDING", VisibleCols=[], ColWidths=[]
+TableHeader="Watched Data 2", SortCol="Expression", SortOrder="ASCENDING", VisibleCols=["Expression";"Value";"Location";"Refresh"], ColWidths=[271;100;100;100]
+WatchedExpression="UseTwicePredict", Window=Watched Data 1
+WatchedExpression="sigmaSqY", Window=Watched Data 1
+WatchedExpression="sigmaSqTheta", Window=Watched Data 1
+WatchedExpression="sigmaSqPhi", Window=Watched Data 1
+WatchedExpression="TgtMotionEst_Sigma", DisplayFormat=DISPLAY_FORMAT_HEX, Window=Watched Data 1
+WatchedExpression="ShootEvaluation", RefreshRate=1, DisplayFormat=DISPLAY_FORMAT_HEX, Window=Watched Data 1
+WatchedExpression="ChiSquare", DisplayFormat=DISPLAY_FORMAT_HEX, Window=Watched Data 1
+WatchedExpression="HitSpinning", RefreshRate=1, DisplayFormat=DISPLAY_FORMAT_HEX, Window=Watched Data 1
+WatchedExpression="robot_state", RefreshRate=5, DisplayFormat=DISPLAY_FORMAT_HEX, Window=Watched Data 1
+WatchedExpression="power_heat_data_t", RefreshRate=5, DisplayFormat=DISPLAY_FORMAT_HEX, Window=Watched Data 1
+WatchedExpression="Shoot", RefreshRate=5, DisplayFormat=DISPLAY_FORMAT_HEX, Window=Watched Data 1
+WatchedExpression="remote_control", RefreshRate=5, DisplayFormat=DISPLAY_FORMAT_HEX, Window=Watched Data 1
+WatchedExpression="BulletSpeed", DisplayFormat=DISPLAY_FORMAT_HEX, Window=Watched Data 1
+WatchedExpression="QEKF_INS", RefreshRate=2, DisplayFormat=DISPLAY_FORMAT_HEX, Window=Watched Data 1
+WatchedExpression="INS", RefreshRate=5, DisplayFormat=DISPLAY_FORMAT_HEX, Window=Watched Data 1
+WatchedExpression="gimbal_task.c::dt", RefreshRate=5, Window=Watched Data 1
+WatchedExpression="theta", RefreshRate=5, Window=Watched Data 1
+WatchedExpression="ChassisPosPredict", RefreshRate=5, Window=Watched Data 1
+WatchedExpression="sigmaSqYaw", Window=Watched Data 1
+WatchedExpression="ChassisEst_Sigma", RefreshRate=5, Window=Watched Data 1
+WatchedExpression="sigmaSqTheta", RefreshRate=5, Window=Watched Data 1
+WatchedExpression="UseTwicePredict", Window=Watched Data 1
+WatchedExpression="ShootEvaluation", RefreshRate=5, Window=Watched Data 1
+WatchedExpression="ChassisEst_P", RefreshRate=5, Window=Watched Data 1
+WatchedExpression="AimAssist_Rx_Buf", RefreshRate=5, Window=Watched Data 2
+WatchedExpression="OffsetCorrection", RefreshRate=5, Window=Watched Data 2
+WatchedExpression="INS", Window=Watched Data 2
+WatchedExpression="IMU_Param", Window=Watched Data 2
+WatchedExpression="shoot_data", RefreshRate=5, Window=Watched Data 2
+WatchedExpression="HitSpinning", RefreshRate=5, Window=Watched Data 2
+WatchedExpression="enemy_outpost_HP", Window=Watched Data 2
+WatchedExpression="useSlerp", Window=Watched Data 2
+WatchedExpression="Shoot", RefreshRate=5, Window=Watched Data 2
+WatchedExpression="robot_state", RefreshRate=5, Window=Watched Data 2
+WatchedExpression="BMI088", RefreshRate=5, Window=Watched Data 2
+WatchedExpression="Detect_List", RefreshRate=5, Window=Watched Data 2
+WatchedExpression="SpinningSwitchPeriodThreshold", RefreshRate=5, Window=Watched Data 2
+WatchedExpression="useyModel", Window=Watched Data 2
+WatchedExpression="debugValue32", RefreshRate=5, Window=Watched Data 2
+WatchedExpression="Gimbal", Window=Watched Data 2
+WatchedExpression="TgtPosPredict", RefreshRate=5, Window=Watched Data 2
+WatchedExpression="ChassisEst_R", RefreshRate=5, Window=Watched Data 2
+WatchedExpression="Shoot", RefreshRate=5, Window=Watched Data 2
+WatchedExpression="AimAssist", RefreshRate=5, Window=Watched Data 2
+WatchedExpression="UseTwicePredict", Window=Watched Data 2
+WatchedExpression="TgtMotionEst_Sigma", Window=Watched Data 2
+WatchedExpression="AimAssist", Window=Watched Data 2
+WatchedExpression="enemy_outpost_HP", Window=Watched Data 2
+WatchedExpression="DataFromAerial", RefreshRate=5, Window=Watched Data 2
+WatchedExpression="x", Window=Watched Data 2

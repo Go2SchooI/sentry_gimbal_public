@@ -1,0 +1,799 @@
+make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 4.1
+# Built for i686-pc-mingw32
+# Copyright (C) 1988-2014 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Thu Nov 16 17:40:57 2023
+
+# Variables
+
+# 'override' directive
+GNUMAKEFLAGS := 
+# automatic
+<D = $(patsubst %/,%,$(patsubst %\,%,$(dir $<)))
+# automatic
+?F = $(notdir $?)
+# default
+.SHELLFLAGS := -c
+# environment
+GALAXY_GENICAM_ROOT = C:\Program Files\Daheng Imaging\GalaxySDK\GenICam
+# environment
+VSCODE_CRASH_REPORTER_PROCESS_TYPE = extensionHost
+# makefile (from 'Makefile', line 194)
+LDSCRIPT = STM32F407IGHx_FLASH.ld
+# makefile
+MAKEFLAGS = pqrR
+# makefile (from 'Makefile', lin 
+e 16)
+TARGET = C_Board_Standard_Robot
+# automatic
+?D = $(patsubst %/,%,$(patsubst %\,%,$(dir $?)))
+# makefile (from 'Makefile', line 142)
+AS_DEFS = 
+# makefile (from 'Makefile', line 154)
+AS_INCLUDES = -IInc
+# automatic
+@D = $(patsubst %/,%,$(patsubst %\,%,$(dir $@)))
+# environment
+HOMEDRIVE = C:
+# automatic
+@F = $(notdir $@)
+# automatic
+^D = $(patsubst %/,%,$(patsubst %\,%,$(dir $^)))
+# makefile
+CURDIR := d:/RoboMaster2024/Sentry_Gimbal_2023-master
+# default
+SHELL := sh.exe
+# makefile (from 'Makefile', line 123)
+BIN = $(CP) -O binary -S
+# environment
+WINDIR = C:\Windows
+# environment
+VSCODE_NLS_CONFIG = {"locale":"zh-cn","osLocale":"zh-cn","availableLanguages":{"*":"zh-cn"},"_languagePackId":"7b3b4bbe44b5870ce6cf5ac70d2b1a12.zh-cn","_translationsConfigFile":"C:\\Users\\86152\\AppData\\Roaming\\Code\\clp\\7b3b4bbe44b5870ce6cf5ac70d2b1a12.zh-cn\\tcf.json","_cacheRoot":"C:\\Users\\86152\\AppData\\Roaming\\Code\\clp\\7b3b4bbe44b5870ce6cf5ac70d2b1a12.zh-cn","_resolvedLanguagePackCoreLocation":"C:\\Users\\86152\\AppData\\Roaming\\Code\\clp\\7b3b4bbe44b5870ce6cf5ac70d2b1a12.zh-cn\\1a5daa3a0231a0fbba4f14db7ec463cf99d7768e","_corruptedFile":"C:\\Users\\86152\\AppData\\Roaming\\Code\\clp\\7b3b4bbe44b5870ce6cf5ac70d2b1a12.zh-cn\\corrupted.info","_languagePackSupport":true}
+# makefile (from 'Makefile', line 120)
+SZ = $(PREFIX)size
+# makefile (from 'Makefile', line 187)
+CFLAGS = $(MCU) $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections -g -gdwarf-2 -MMD -MP -MF"$(@:%.o=%.d)"
+# environment
+ONEDRIVE = C:\Users\86152\OneDrive
+# environment
+PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY;.PYW
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# environment
+FPS_BROWSER_USER_PROFILE_STRING = Default
+# makefile (from 'Makefile', line 119)
+CP = $(PREFIX)objcopy
+# makefile (from 'Makefile', line 23)
+DEBUG = 1
+# environment
+TMP = C:\Users\86152\AppData\Local\Temp
+# environment
+GENICAM_GENTL64_PATH = C:\Program Files\Daheng Imaging\GalaxySDK\GenTL\Win64
+# makefile (from 'Makefile', line 118)
+AS = $(PREFIX)gcc -x assembler-with-cpp
+# environment
+PROGRAMW6432 = C:\Program Files
+# environment
+PROGRAMDATA = C:\ProgramData
+# environment
+VSCODE_CWD = C:\Users\86152\AppData\Local\Programs\Microsoft VS Code
+# default
+MAKE_HOST := i686-pc-mingw32
+# environment
+PATH = C:\Program Files\Common Files\Siemens\Automation\Simatic OAM\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;F:\VMware\bin\;C:\Program Files\Daheng Imaging\GalaxySDK\GenICam\bin\Win64_x64;C:\Program Files\Daheng Imaging\GalaxySDK\APIDll\Win64;C:\Program Files\Daheng Imaging\GalaxySDK\GenICam\bin\Win32_i86;C:\Program Files\Daheng Imaging\GalaxySDK\APIDll\Win32;D:\Software\python\Scripts\;D:\Software\python\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;D:\Software\opencv\opencv\build\x64\vc14\bin;D:\Software\Git\cmd;D:\Software\miniconda;D:\Software\miniconda\Scripts;D:\Software\miniconda\Library\bin;C:\Program Files\Pandoc\;D:\Software\matlab2020b\runtime\win64;D:\Software\matlab2020b\bin;D:\Software\matlab2020b\polyspace\bin;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\DTS\Binn\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Users\86152\Downloads\swigwin-3.0.12;C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\bin;D:\Software\miniconda;D:\Software\miniconda\Library\mingw-w64\bin;D:\Software\miniconda\Library\usr\bin;D:\Software\miniconda\Library\bin;D:\Software\miniconda\Scripts;C:\Users\86152\AppData\Local\Microsoft\WindowsApps;D:\Software\Anaconda;D:\Software\Anaconda\Scripts;D:\Software\Anaconda\Library\bin;C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\bin;;C:\Program Files\JetBrains\PyCharm 2021.3\bin;;C:\Users\86152\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\86152\AppData\Local\Programs\Fiddler
+# environment
+SW_SIM_HYDRA = C:\Program Files\Common Files\SolidWorks Shared\Simulation Worker Agent\
+# environment
+SIMATIC_OAM_DATA = C:\ProgramData\Siemens\Automation\Simatic OAM
+# environment
+COMMONPROGRAMW6432 = C:\Program Files\Common Files
+# environment
+PROCESSOR_ARCHITECTURE = x86
+# environment
+DAHENG_IMAVISION_MER_SETUP_PATH = C:\Program Files\Daheng Imaging\GalaxySDK\unins000.exe
+# environment
+USERPROFILE = C:\Users\86152
+# environment
+ALLUSERSPROFILE = C:\ProgramData
+# environment
+NUMBER_OF_PROCESSORS = 16
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# makefile (from 'Makefile', line 199)
+LDFLAGS = $(MCU) -specs=nano.specs -T$(LDSCRIPT) $(LIBDIR) $(LIBS) -Wl,-Map=$(BUILD_DIR)/$(TARGET).map,--cref -Wl,--gc-sections
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync
+# environment
+GENICAM_GENTL32_PATH = C:\Program Files\Daheng Imaging\GalaxySDK\GenTL\Win32
+# automatic
+%F = $(notdir $%)
+# environment
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_29252_YHFVKAXQYKOAIKXK
+# environment
+SW_SIM_MPIT = INTELMPI
+# makefile (from 'Makefile', line 101)
+ASM_SOURCES = startup_stm32f407xx.s
+# makefile (from 'Makefile', line 25)
+OPT = -O3
+# environment
+COMPUTERNAME = LAPTOP-184AECES
+# environment
+PROGRAMFILES = C:\Program Files (x86)
+# environment
+DRIVERDATA = C:\Windows\System32\Drivers\DriverData
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# environment
+USERNAME = 86152
+# environment
+SIMATIC_OAM = C:\Program Files\Common Files\Siemens\Automation\Simatic OAM
+# environment
+PUBLIC = C:\Users\Public
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+BESIEGE_UNITY_ASSEMBLIES = D:/Software/steam/steamapps/common/Besiege/Besiege_Data\Managed/
+# environment
+VSCODE_CODE_CACHE_PATH = C:\Users\86152\AppData\Roaming\Code\CachedData\1a5daa3a0231a0fbba4f14db7ec463cf99d7768e
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# environment
+COMMONPROGRAMFILES = C:\Program Files (x86)\Common Files
+# environment
+LOGONSERVER = \\LAPTOP-184AECES
+# makefile (from 'Makefile', line 108)
+PREFIX = arm-none-eabi-
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# environment
+USERDOMAIN = LAPTOP-184AECES
+# makefile (from 'Makefile', line 145)
+C_DEFS = -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING
+# environment
+MAKELEVEL := 0
+# makefile (from 'Makefile', line 138)
+MCU = $(CPU) -mthumb $(FPU) $(FLOAT-ABI)
+# makefile (from 'Makefile', line 158)
+C_INCLUDES = -IInc -IDrivers/STM32F4xx_HAL_Driver/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc/Legacy -IMiddlewares/Third_Party/FreeRTOS/Source/include -IMiddlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -IMiddlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -IDrivers/CMSIS/Device/ST/STM32F4xx/Include -IDrivers/CMSIS/Include -IDrivers/CMSIS/Include -IApplication -IBsp -IComponents -IComponents/Algorithm -IComponents/Controller -IComponents/Devices
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# makefile (from 'Makefile', line 135)
+FLOAT-ABI = -mfloat-abi=hard
+# makefile (from 'Makefile', line 122)
+HEX = $(CP) -O ihex
+# makefile (from 'Makefile', line 117)
+CC = $(PREFIX)gcc
+# environment
+GALAXY_GENICAM_LOG_CONFIG = C:\Program Files\Daheng Imaging\GalaxySDK\GenICam\log\config\DebugLogging.properties
+# makefile (from 'Makefile', line 32)
+BUILD_DIR = build
+# makefile (from 'Makefile', line 177)
+ASFLAGS = $(MCU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
+# default
+MAKE_VERSION := 4.1
+# makefile
+.DEFAULT_GOAL := all
+# environment
+PROGRAMFILES(X86) = C:\Program Files (x86)
+# automatic
+%D = $(patsubst %/,%,$(patsubst %\,%,$(dir $%)))
+# makefile (from 'Makefile', line 129)
+CPU = -mcpu=cortex-m4
+# makefile (from 'Makefile', line 132)
+FPU = -mfpu=fpv4-sp-d16
+# environment
+LOCALAPPDATA = C:\Users\86152\AppData\Local
+# environment
+PSMODULEPATH = C:\Program Files\WindowsPowerShell\Modules;C:\Windows\system32\WindowsPowerShell\v1.0\Modules;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\PowerShell\Modules\
+# default
+MAKE_COMMAND := make.exe
+# environment
+PROCESSOR_ARCHITEW6432 = AMD64
+# makefile (from 'Makefile', line 198)
+LIBDIR = -LDrivers/CMSIS/Lib/GCC
+# default
+.VARIABLES := 
+# automatic
+*F = $(notdir $*)
+# environment
+PROCESSOR_IDENTIFIER = AMD64 Family 23 Model 96 Stepping 1, AuthenticAMD
+# environment
+OS = Windows_NT
+# environment
+VSCODE_IPC_HOOK = \\.\pipe\21e80fbd51a0915731801103b2b7b78f-1.84.2-main-sock
+# environment
+HOMEPATH = \Users\86152
+# environment
+COMMONPROGRAMFILES(X86) = C:\Program Files (x86)\Common Files
+# environment
+PROMPT = $P$G
+# environment
+MFLAGS = -pqrR
+# automatic
+*D = $(patsubst %/,%,$(patsubst %\,%,$(dir $*)))
+# environment
+SYSTEMROOT = C:\Windows
+# automatic
++D = $(patsubst %/,%,$(patsubst %\,%,$(dir $+)))
+# environment
+VSCODE_L10N_BUNDLE_LOCATION = file:///c%3A/Users/86152/.vscode/extensions/ms-ceintl.vscode-language-pack-zh-hans-1.84.2023111509/translations/extensions/vscode.json-language-features.i18n.json
+# automatic
++F = $(notdir $+)
+# environment
+APPDATA = C:\Users\86152\AppData\Roaming
+# environment
+TEMP = C:\Users\86152\AppData\Local\Temp
+# environment
+GALAXY_GENICAM_CACHE = C:\ProgramData\Galaxy\xml\cache
+# environment
+BESIEGE_GAME_ASSEMBLIES = D:/Software/steam/steamapps/common/Besiege/Besiege_Data\Managed/
+# environment
+COMSPEC = C:\Windows\system32\cmd.exe
+# default
+MAKEFILES := 
+# automatic
+<F = $(notdir $<)
+# environment
+LC_ALL = C
+# environment
+SW_SIM_TEMP = C:\ProgramData\SOLIDWORKS\SW_net_sim_temp\
+# makefile (from 'Makefile', line 197)
+LIBS = -lc -lm -lnosys -larm_cortexM4lf_math
+# automatic
+^F = $(notdir $^)
+# makefile (from 'Makefile', line 38)
+C_SOURCES = Src/main.c Src/gpio.c Src/freertos.c Src/can.c Src/dma.c Src/spi.c Src/tim.c Src/usart.c Src/stm32f4xx_it.c Src/stm32f4xx_hal_msp.c Src/stm32f4xx_hal_timebase_tim.c Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_can.c Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c Src/system_stm32f4xx.c Middlewares/Third_Party/FreeRTOS/Source/croutine.c Middlewares/Third_Party/FreeRTOS/Source/event_groups.c Middlewares/Third_Party/FreeRTOS/Source/list.c Middlewares/Third_Party/FreeRTOS/Source/queue.c Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.c Middlewares/Third_Party/FreeRTOS/Source/tasks.c Middlewares/Third_Party/FreeRTOS/Source/timers.c Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c Application/detect_task.c Application/aimassist_task.c Application/shoot_task.c Application/gimbal_task.c Application/ins_task.c Application/judgement_info.c Application/motor.c Application/remote_control.c Application/SerialDebug.c Bsp/bsp_CAN.c Bsp/bsp_dwt.c Bsp/bsp_PWM.c Bsp/bsp_usart_idle.c Components/kalman_filter.c Components/user_lib.c Components/system_identification.c Components/Algorithm/QuaternionEKF.c Components/Controller/controller.c Components/Devices/BMI088driver.c Components/Devices/BMI088Middleware.c 
+# default
+SUFFIXES := 
+# environment
+SYSTEMDRIVE = C:
+# environment
+SESSIONNAME = Console
+# environment
+PROCESSOR_REVISION = 6001
+# environment
+PYCHARM = C:\Program Files\JetBrains\PyCharm 2021.3\bin;
+# default
+.RECIPEPREFIX := 
+# makefile (from 'Makefile', line 212)
+OBJECTS = $(addprefix $(BUILD_DIR)/,$(notdir $(C_SOURCES:.c=.o))) $(addprefix $(BUILD_DIR)/,$(notdir $(ASM_SOURCES:.s=.o)))
+# environment
+LANG = C
+# environment
+PROCESSOR_LEVEL = 23
+# environment
+FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
+# environment
+VSCODE_PID = 29252
+# environment
+USERDOMAIN_ROAMINGPROFILE = LAPTOP-184AECES
+# variable set hash-table stats:
+# Load=131/1024=13%, Rehash=0, Collisions=20/201=10%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# Components (key d:/RoboMaster2024/Sentry_Gimbal_2023-master/Components, mtime 1693385856): 14 files, no impossibilities.
+# . (key d:/RoboMaster2024/Sentry_Gimbal_2023-master, mtime 1700127568): 21 files, no impossibilities.
+# Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F (key d:/RoboMaster2024/Sentry_Gimbal_2023-master/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F, mtime 1693385856): 4 files, no impossibilities.
+# Application (key d:/RoboMaster2024/Sentry_Gimbal_2023-master/Application, mtime 1693385856): 20 files, no impossibilities.
+# Src (key d:/RoboMaster2024/Sentry_Gimbal_2023-master/Src, mtime 1693385856): 14 files, no impossibilities.
+# Components/Controller (key d:/RoboMaster2024/Sentry_Gimbal_2023-master/Components/Controller, mtime 1693385856): 4 files, no impossibilities.
+# build (key d:/RoboMaster2024/Sentry_Gimbal_2023-master/build, mtime 1693385856): 4 files, no impossibilities.
+# Middlewares/Third_Party/FreeRTOS/Source (key d:/RoboMaster2024/Sentry_Gimbal_2023-master/Middlewares/Third_Party/FreeRTOS/Source, mtime 1693385856): 12 files, no impossibilities.
+# Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS (key d:/RoboMaster2024/Sentry_Gimbal_2023-master/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS, mtime 1693385856): 4 files, no impossibilities.
+# Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang (key d:/RoboMaster2024/Sentry_Gimbal_2023-master/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang, mtime 1693385856): 3 files, no impossibilities.
+# Components/Devices (key d:/RoboMaster2024/Sentry_Gimbal_2023-master/Components/Devices, mtime 1693385856): 9 files, no impossibilities.
+# Components/Algorithm (key d:/RoboMaster2024/Sentry_Gimbal_2023-master/Components/Algorithm, mtime 1693385856): 9 files, no impossibilities.
+# Drivers/STM32F4xx_HAL_Driver/Src (key d:/RoboMaster2024/Sentry_Gimbal_2023-master/Drivers/STM32F4xx_HAL_Driver/Src, mtime 1693385856): 20 files, no impossibilities.
+# Bsp (key d:/RoboMaster2024/Sentry_Gimbal_2023-master/Bsp, mtime 1693385856): 12 files, no impossibilities.
+
+# 150 files, no impossibilities in 14 directories.
+
+# Implicit Rules
+
+build/%.o: %.c Makefile | build
+#  recipe to execute (from 'Makefile', line 216):
+	$(CC) -c $(CFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.c=.lst)) $< -o $@
+
+build/%.o: %.s Makefile | build
+#  recipe to execute (from 'Makefile', line 219):
+	$(AS) -c $(CFLAGS) $< -o $@
+
+build/%.hex: build/%.elf | build
+#  recipe to execute (from 'Makefile', line 226):
+	$(HEX) $< $@
+	
+
+build/%.bin: build/%.elf | build
+#  recipe to execute (from 'Makefile', line 229):
+	$(BIN) $< $@	
+	
+
+# 4 implicit rules, 0 (0.0%) terminal.
+
+# Files
+
+# Not a target:
+build/stm32f4xx_hal_pwr_ex.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/BMI088driver.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+build/main.o: Src/main.c Makefile | build
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'main'
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := build/main.o
+# automatic
+# % := 
+# automatic
+# * := main
+# automatic
+# + := Src/main.c Makefile
+# automatic
+# | := build
+# automatic
+# < := Src/main.c
+# automatic
+# ^ := Src/main.c Makefile
+# automatic
+# ? := Src/main.c Makefile
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=1/26=4%
+#  recipe to execute (from 'Makefile', line 216):
+	$(CC) -c $(CFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.c=.lst)) $< -o $@
+
+# Not a target:
+build/stm32f4xx_hal_cortex.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/tim.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/stm32f4xx_hal_spi.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+all: build/C_Board_Standard_Robot.elf build/C_Board_Standard_Robot.hex build/C_Board_Standard_Robot.bin
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/14=0%
+
+# Not a target:
+build/stm32f4xx_hal_flash_ex.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/C_Board_Standard_Robot.bin:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/usart.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/heap_4.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/user_lib.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/stm32f4xx_hal_dma_ex.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/stm32f4xx_hal_can.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/ins_task.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/bsp_usart_idle.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/stm32f4xx_hal_msp.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/stm32f4xx_hal_gpio.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/detect_task.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/stm32f4xx_hal.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/bsp_dwt.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2023-08-30 16:57:36
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+build/event_groups.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/bsp_CAN.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/dma.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/gpio.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/stm32f4xx_hal_exti.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+build:
+#  Implicit rule search has not been done.
+#  Last modified 2023-08-30 16:57:36
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 232):
+	mkdir $@		
+
+# Not a target:
+build/stm32f4xx_hal_flash_ramfunc.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/C_Board_Standard_Robot.hex:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/remote_control.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Src/main.c:
+#  Implicit rule search has been done.
+#  Last modified 2023-08-30 16:57:36
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+build/aimassist_task.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/kalman_filter.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a ta 
+rget:
+build/stm32f4xx_it.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/stream_buffer.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/queue.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/freertos.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/stm32f4xx_hal_rcc_ex.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/bsp_PWM.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/stm32f4xx_hal_rcc.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/motor.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+build/C_Board_Standard_Robot.elf: build/main.o build/gpio.o build/freertos.o build/can.o build/dma.o build/spi.o build/tim.o build/usart.o build/stm32f4xx_it.o build/stm32f4xx_hal_msp.o build/stm32f4xx_hal_timebase_tim.o build/stm32f4xx_hal_rcc.o build/stm32f4xx_hal_rcc_ex.o build/stm32f4xx_hal_flash.o build/stm32f4xx_hal_flash_ex.o build/stm32f4xx_hal_flash_ramfunc.o build/stm32f4xx_hal_gpio.o build/stm32f4xx_hal_dma_ex.o build/stm32f4xx_hal_dma.o build/stm32f4xx_hal_pwr.o build/stm32f4xx_hal_pwr_ex.o build/stm32f4xx_hal_cortex.o build/stm32f4xx_hal.o build/stm32f4xx_hal_exti.o build/stm32f4xx_hal_can.o build/stm32f4xx_hal_spi.o build/stm32f4xx_hal_tim.o build/stm32f4xx_hal_tim_ex.o build/stm32f4xx_hal_uart.o build/system_stm32f4xx.o build/croutine.o build/event_groups.o build/list.o build/queue.o build/stream_buffer.o build/tasks.o build/timers.o build/cmsis_os.o build/heap_4.o build/port.o build/detect_task.o build/aimassist_task.o build/shoot_task.o build/gimbal_task.o build/ins_task.o build/judgement_info.o build/motor.o build/remote_control.o build/SerialDebug.o build/bsp_CAN.o build/bsp_dwt.o build/bsp_PWM.o build/bsp_usart_idle.o build/kalman_filter.o build/user_lib.o build/system_identification.o build/QuaternionEKF.o build/controller.o build/BMI088driver.o build/BMI088Middleware.o build/startup_stm32f407xx.o Makefile
+#  Implicit rule search has not been done.
+#  Last modified 2023-08-30 16:57:36
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/14=0%
+#  recipe to execute (from 'Makefile', line 222):
+	$(CC) $(OBJECTS) $(LDFLAGS) -o $@
+	$(SZ) $@
+
+# Not a target:
+build/system_stm32f4xx.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/stm32f4xx_hal_timebase_tim.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/stm32f4xx_hal_uart.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/port.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/controller.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/system_identification.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/shoot_task.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+clean:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 238):
+	-rm -fR $(BUILD_DIR)
+
+# Not a target:
+build/judgement_info.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/stm32f4xx_hal_tim.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/startup_stm32f407xx.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/cmsis_os.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/timers.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/stm32f4xx_hal_pwr.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/SerialDebug.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/gimbal_task.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/spi.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/croutine.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/QuaternionEKF.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/stm32f4xx_hal_flash.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/tasks.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/can.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/stm32f4xx_hal_dma.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/stm32f4xx_hal_tim_ex.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/list.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/BMI088Middleware.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# files hash-table stats:
+# Load=71/1024=7%, Rehash=0, Collisions=10/183=5%
+# VPATH Search Paths
+
+vpath %.c Application;Bsp;Components;Components/Algorithm;Components/Controller;Components/Devices;Drivers/STM32F4xx_HAL_Driver/Src;Middlewares/Third_Party/FreeRTOS/Source;Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F;Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang;Src
+
+# 1 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 208 / storage = 3560 B / avg = 17 B
+# current buf: size = 8174 B / used = 3560 B / count = 208 / avg = 17 B
+
+# strcache performance: lookups = 278 / hit rate = 25%
+# hash-table stats:
+# Load=208/8192=3%, Rehash=0, Collisions=17/278=6%
+# Finished Make data base on Thu Nov 16 17:40:57 2023
+
+ 
