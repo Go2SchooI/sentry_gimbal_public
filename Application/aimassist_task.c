@@ -267,16 +267,6 @@ static void AimAssist_Get_Target(void)
 
         if (TgtPosPredict.isSpinning == 1)
         {
-            if (fabsf(ChassisPosPredict.theta_dot) > 8.0f)
-                HighSpinningCount++;
-            else
-                HighSpinningCount = 0;
-
-            if (HighSpinningCount > 300)
-                HitSpinning.SpinningSpeedStatus = HighSpeedSpinning;
-            else
-                HitSpinning.SpinningSpeedStatus = NormalSpeedSpinning;
-
             if (UseTwicePredict)
             {
                 Get_SpinningFrame();
@@ -300,10 +290,8 @@ static void AimAssist_Get_Target(void)
             if (UseTwicePredict)
             {
                 for (uint8_t i = 0; i < 3; i++)
-                {
                     TgtPosPredict.PreTargetEarthFrame[i] = TgtPosPredict.Position[i] + TgtPosPredict.Velocity[i] * TgtPosPredict.ForwardTime + TgtPosPredict.Accel[i] * TgtPosPredict.ForwardTime * TgtPosPredict.ForwardTime * 0.5f * UseAccelPredict;
-                }
-                // ���μ��㵯������
+
                 TgtPosPredict.PitchPosition = Ballistic_Compensation(sqrtf(TgtPosPredict.PreTargetEarthFrame[X] * TgtPosPredict.PreTargetEarthFrame[X] + TgtPosPredict.PreTargetEarthFrame[Y] * TgtPosPredict.PreTargetEarthFrame[Y]),
                                                                      TgtPosPredict.TgtHeight, 0,
                                                                      TgtPosPredict.BulletVelocity, &TgtPosPredict.ForwardTime);
@@ -315,7 +303,7 @@ static void AimAssist_Get_Target(void)
 
             TgtPosPredict.ForwardTime += AimAssist.FrameDelayToINS;
             TgtPosPredict.ForwardTime = float_constrain(TgtPosPredict.ForwardTime, 0.005f, 0.75f);
-            // �����ⲻ����Ԥ��
+
             if (TgtPosPredict.HorizontalDistance > 8.0f)
                 TgtPosPredict.ForwardTime = 0;
             for (uint8_t i = 0; i < 3; i++)
@@ -459,10 +447,7 @@ static uint8_t is_Target_Spinning(void)
                 HitSpinning.SpinningCount = HitSpinning.SpinningCountThreshold - 1;
 
             if (HitSpinning.SpinningCount >= HitSpinning.SpinningCountThreshold)
-            {
                 TgtPosPredict.isSpinning = 1;
-                TgtPosPredict.SpinningTgtValid = 1;
-            }
             else
                 TgtPosPredict.isSpinning = 0;
 
@@ -845,7 +830,7 @@ static void GetTargetPositionFull(ControlFrameFull CtrlFrameTempFull, uint8_t *b
 
         ShootEvaluation.TargetValidTime = INS_GetTimeline();
 
-        // �������ϵ��������Э�������
+        // 单位为m
         y = AimAssist.CtrlFrameFull.py / 1000.0f;
         theta = atan2f(AimAssist.CtrlFrameFull.px, AimAssist.CtrlFrameFull.py);
         phi = atan2f(AimAssist.CtrlFrameFull.pz, AimAssist.CtrlFrameFull.py);
@@ -879,7 +864,7 @@ static void GetTargetPositionFull(ControlFrameFull CtrlFrameTempFull, uint8_t *b
             TgtPosPredict.Rc_data[8] = 5;
         }
 
-        // ���ϵ�任����̨ϵ
+        // 是否归一化效果相同
         rawPos[X] = AimAssist.CtrlFrameFull.px / 1000.0f;
         rawPos[Y] = AimAssist.CtrlFrameFull.py / 1000.0f;
         rawPos[Z] = AimAssist.CtrlFrameFull.pz / 1000.0f;
@@ -913,7 +898,6 @@ static void GetTargetPositionFull(ControlFrameFull CtrlFrameTempFull, uint8_t *b
         for (uint8_t i = 0; i < 3; i++)
             TgtPosPredict.TargetBodyFrame[i] = AimAssist.TargetBodyFrame[i];
 
-        // ��������״̬
         AimAssist.Status = TargetValid;
 
         AimAssist.TimeConsuming = float_constrain(AimAssist.TimeConsuming, 0.0f, 0.015f);
@@ -932,7 +916,7 @@ static void GetTargetPositionFull(ControlFrameFull CtrlFrameTempFull, uint8_t *b
         sinPitch = arm_sin_f32(tempPitch);
         sinRoll = arm_sin_f32(tempRoll);
 
-        // ������ת����     1.yaw(alpha) 2.pitch(beta) 3.roll(gamma)
+        // 相机建模 yaw(alpha) 2.pitch(beta) 3.roll(gamma)
         TgtPosPredict.Cbn_data[0] = cosYaw * cosRoll - sinYaw * sinPitch * sinRoll;
         TgtPosPredict.Cbn_data[1] = -cosPitch * sinYaw;
         TgtPosPredict.Cbn_data[2] = cosYaw * sinRoll + cosRoll * sinYaw * sinPitch;
@@ -994,7 +978,7 @@ static void GetTargetPositionFull(ControlFrameFull CtrlFrameTempFull, uint8_t *b
     }
     else
     {
-        // �Ӿ�δʶ��Ŀ��
+        // 视觉未识别到
         AimAssist.CtrlFrameFull.flg = 0;
 
         if (TgtPosPredict.LostCount == 0)
@@ -1006,12 +990,12 @@ static void GetTargetPositionFull(ControlFrameFull CtrlFrameTempFull, uint8_t *b
         }
         else
         {
-            // Ŀ�궪ʧ ��λ�˶���Ϣ
+            // 目标丢失
             AimAssist.Status = TargetLost;
             TgtPosPredict.Status = TgtLost;
             TgtPosPredict.TrackingCount = 0;
 
-            // �������˲�����λ
+            // 重置卡尔曼滤波
             ChassisEst_Reset(NULL, 0, 0);
             TgtMotionEst_Reset(NULL);
         }
@@ -1311,14 +1295,14 @@ static void TgtMotionEst_ChiSquare_Test(KalmanFilter_t *kf)
     kf->MatStatus = Matrix_Transpose(&kf->H, &kf->HT); // z|x => x|z
     kf->temp_matrix.numRows = kf->H.numRows;
     kf->temp_matrix.numCols = kf->Pminus.numCols;
-    kf->MatStatus = Matrix_Multiply(&kf->H, &kf->Pminus, &kf->temp_matrix); // temp_matrix = H��P'(k)
+    kf->MatStatus = Matrix_Multiply(&kf->H, &kf->Pminus, &kf->temp_matrix);
     kf->temp_matrix1.numRows = kf->temp_matrix.numRows;
     kf->temp_matrix1.numCols = kf->HT.numCols;
-    kf->MatStatus = Matrix_Multiply(&kf->temp_matrix, &kf->HT, &kf->temp_matrix1); // temp_matrix1 = H��P'(k)��HT
+    kf->MatStatus = Matrix_Multiply(&kf->temp_matrix, &kf->HT, &kf->temp_matrix1);
     kf->S.numRows = kf->R.numRows;
     kf->S.numCols = kf->R.numCols;
     kf->MatStatus = Matrix_Add(&kf->temp_matrix1, &kf->R, &kf->S); // S = H P'(k) HT + R
-    kf->MatStatus = Matrix_Inverse(&kf->S, &kf->temp_matrix1);     // temp_matrix1 = inv(H��P'(k)��HT + R)
+    kf->MatStatus = Matrix_Inverse(&kf->S, &kf->temp_matrix1);
 
     kf->temp_vector.numRows = kf->H.numRows;
     kf->temp_vector.numCols = 1;
@@ -1330,7 +1314,7 @@ static void TgtMotionEst_ChiSquare_Test(KalmanFilter_t *kf)
     // chi-square test
     // kf->temp_matrix.numRows = kf->temp_vector1.numRows;
     // kf->temp_matrix.numCols = 1;
-    // kf->MatStatus = Matrix_Multiply(&kf->temp_matrix1, &kf->temp_vector1, &kf->temp_matrix); // temp_matrix = inv(H��P'(k)��HT + R)��(z(k) - H xhat'(k))
+    // kf->MatStatus = Matrix_Multiply(&kf->temp_matrix1, &kf->temp_vector1, &kf->temp_matrix);
     // kf->temp_vector.numRows = 1;
     // kf->temp_vector.numCols = kf->temp_vector1.numRows;
     // kf->MatStatus = Matrix_Transpose(&kf->temp_vector1, &kf->temp_vector); // temp_vector = (z(k) - H xhat'(k))'
@@ -1344,7 +1328,7 @@ static void TgtMotionEst_ChiSquare_Test(KalmanFilter_t *kf)
     // if (dist < 100)
     //     dist = 100;
 
-    // ���㿨������в�z(k) - h(xhat'(k))�뿨������H����
+    // z(k) - h(xhat'(k))
     arm_sqrt_f32(kf->z_data[X] * kf->z_data[X] +
                      kf->z_data[Y] * kf->z_data[Y],
                  &dist);
@@ -1370,24 +1354,24 @@ static void TgtMotionEst_ChiSquare_Test(KalmanFilter_t *kf)
     kf->MatStatus = Matrix_Transpose(&TgtPosPredict.H, &TgtPosPredict.HT);
     TgtPosPredict.M1.numRows = 6;
     TgtPosPredict.M1.numCols = 2;
-    kf->MatStatus = Matrix_Multiply(&kf->Pminus, &TgtPosPredict.HT, &TgtPosPredict.M1); // M1 = P'(k)��HT
+    kf->MatStatus = Matrix_Multiply(&kf->Pminus, &TgtPosPredict.HT, &TgtPosPredict.M1);
     TgtPosPredict.M2.numRows = 2;
     TgtPosPredict.M2.numCols = 2;
-    kf->MatStatus = Matrix_Multiply(&TgtPosPredict.H, &TgtPosPredict.M1, &TgtPosPredict.M2); // M2 = H��P'(k)��HT
+    kf->MatStatus = Matrix_Multiply(&TgtPosPredict.H, &TgtPosPredict.M1, &TgtPosPredict.M2);
     TgtPosPredict.M2_data[0] += sigmaSqTheta;
     TgtPosPredict.M2_data[3] += sigmaSqPhi;
     TgtPosPredict.M1.numRows = 2;
     TgtPosPredict.M1.numCols = 2;
-    kf->MatStatus = Matrix_Inverse(&TgtPosPredict.M2, &TgtPosPredict.M1); // M1 = inv(H��P'(k)��HT)
+    kf->MatStatus = Matrix_Inverse(&TgtPosPredict.M2, &TgtPosPredict.M1);
     TgtPosPredict.ResErr_data[0] = atan2f(kf->z_data[X], kf->z_data[Y]) - atan2f(kf->xhatminus_data[0], kf->xhatminus_data[2]);
     TgtPosPredict.ResErr_data[1] = atan2f(kf->z_data[Z], dist) - atan2f(kf->xhatminus_data[4], xhatMinusDist);
     kf->MatStatus = Matrix_Transpose(&TgtPosPredict.ResErr, &TgtPosPredict.ResErrT);
     TgtPosPredict.M2.numRows = 2;
     TgtPosPredict.M2.numCols = 1;
-    kf->MatStatus = Matrix_Multiply(&TgtPosPredict.M1, &TgtPosPredict.ResErr, &TgtPosPredict.M2); // M2 = inv(H��P'��HT)��(z - h(xhat'))
+    kf->MatStatus = Matrix_Multiply(&TgtPosPredict.M1, &TgtPosPredict.ResErr, &TgtPosPredict.M2);
     kf->temp_matrix.numRows = 1;
     kf->temp_matrix.numCols = 1;
-    kf->MatStatus = Matrix_Multiply(&TgtPosPredict.ResErrT, &TgtPosPredict.M2, &kf->temp_matrix); // temp_matrix = (z - h(xhat'))T��inv(H��P'��HT)��(z - h(xhat')) �õ���⺯��r
+    kf->MatStatus = Matrix_Multiply(&TgtPosPredict.ResErrT, &TgtPosPredict.M2, &kf->temp_matrix);
 
     if (debugchart)
         Serial_Debug(&huart1, 1, kf->temp_matrix.pData[0] * dist * 0.00001f, AimAssist.TargetEarthFrame[X] / 100,
@@ -1403,7 +1387,6 @@ static void TgtMotionEst_ChiSquare_Test(KalmanFilter_t *kf)
     {
         if (CatchSwitchCount <= 4)
         {
-            // ��Ϣδͨ���������� ��Ԥ��
             // xhat(k) = xhat'(k)
             // P(k) = P'(k)
             memcpy(kf->xhat_data, kf->xhatminus_data, sizeof_float * kf->xhatSize);
@@ -1429,12 +1412,12 @@ static void TgtMotionEst_ChiSquare_Test(KalmanFilter_t *kf)
 
     kf->temp_matrix.numRows = kf->Pminus.numRows;
     kf->temp_matrix.numCols = kf->HT.numCols;
-    kf->MatStatus = Matrix_Multiply(&kf->Pminus, &kf->HT, &kf->temp_matrix); // temp_matrix = P'(k)��HT
+    kf->MatStatus = Matrix_Multiply(&kf->Pminus, &kf->HT, &kf->temp_matrix);
     kf->MatStatus = Matrix_Multiply(&kf->temp_matrix, &kf->temp_matrix1, &kf->K);
 
     kf->temp_vector.numRows = kf->K.numRows;
     kf->temp_vector.numCols = 1;
-    kf->MatStatus = Matrix_Multiply(&kf->K, &kf->temp_vector1, &kf->temp_vector); // temp_vector = K(k)��(z(k) - H��xhat'(k))
+    kf->MatStatus = Matrix_Multiply(&kf->K, &kf->temp_vector1, &kf->temp_vector);
     kf->MatStatus = Matrix_Add(&kf->xhatminus, &kf->temp_vector, &kf->xhat);
 }
 static void TgtMotionEst_Tuning(KalmanFilter_t *kf)
@@ -1529,21 +1512,22 @@ static void ChassisEst_Init(void)
 
 static void ChassisEst_Update(float dt)
 {
-    static
-        // 卡尔曼滤波器更新
-        /*
-         0     1     2     3     4     5     6     7
-         8     9    10    11    12    13    14    15
-        16    17    18    19    20    21    22    23
-        24    25    26    27    28    29    30    31
-        32    33    34    35    36    37    38    39
-        40    41    42    43    44    45    46    47
-        48    49    50    51    52    53    54    55
-        56    57    58    59    60    61    62    63
-        */
+    static uint8_t switch_count, last_switch_count;
 
-        // 根据更新频率设置 F Q 矩阵
-        ChassisPosPredict.Estimator.F_data[1] = dt;
+    // 卡尔曼滤波器更新
+    /*
+     0     1     2     3     4     5     6     7
+     8     9    10    11    12    13    14    15
+    16    17    18    19    20    21    22    23
+    24    25    26    27    28    29    30    31
+    32    33    34    35    36    37    38    39
+    40    41    42    43    44    45    46    47
+    48    49    50    51    52    53    54    55
+    56    57    58    59    60    61    62    63
+    */
+
+    // 根据更新频率设置 F Q 矩阵
+    ChassisPosPredict.Estimator.F_data[1] = dt;
     ChassisPosPredict.Estimator.F_data[19] = dt;
     ChassisPosPredict.Estimator.F_data[37] = dt;
 
@@ -1618,10 +1602,8 @@ static void ChassisEst_Update(float dt)
     for (uint8_t i = 0; i < 8; i++)
     {
         if (!isnormal(ChassisPosPredict.Estimator.xhat_data[i]))
-        {
             ChassisPosPredict.Estimator.xhat_data[i] = 0;
-            nanCount++;
-        }
+
         if (!isnormal(ChassisPosPredict.Estimator.FilteredValue[i]))
             ChassisPosPredict.Estimator.FilteredValue[i] = 0;
     }
