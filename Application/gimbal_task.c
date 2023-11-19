@@ -20,6 +20,8 @@ static void Gimbal_CtrlValue_Limit(void);
 static void Gimbal_Set_Control(void);
 static void Send_Gimbal_Current(void);
 static void GimbalSI_Calculate(void);
+static void Gimbal_Cruise(void);
+static void Gimbal_Tracking(void);
 
 void Gimbal_Init(void)
 {
@@ -137,6 +139,7 @@ void Gimbal_Control(void)
 
     if (Gimbal.Mode == AimAssist_Mode)
         Get_AimAssist_Status();
+
     Gimbal_Get_CtrlValue();
     Gimbal_Set_Control();
     Send_Gimbal_Current();
@@ -175,9 +178,9 @@ static void Get_AimAssist_Status(void)
         Gimbal.aim_status = find_target;
     else
     {
-        if ((t - CatchTime > 1.2f) && (Gimbal.is_reached == 1) && (AimAssist.CtrlFrameFull.flg == 0))
+        if ((t - Gimbal.CatchTime > 1.2f) && (Gimbal.is_reached == 1) && (AimAssist.CtrlFrameFull.flg == 0))
             Gimbal.aim_status = lost_target;
-        else if ((Gimbal.is_reached == 0) && (t - CatchTime > 15.0f))
+        else if ((Gimbal.is_reached == 0) && (t - Gimbal.CatchTime > 15.0f))
             Gimbal.aim_status = listen_lidar;
         else
             Gimbal.aim_status = wait_command;
@@ -220,100 +223,20 @@ static void Gimbal_Get_CtrlValue(void)
 
     if (Gimbal.Mode == AimAssist_Mode)
     {
-        if (Gimbal.aim_status == wait_command)
-        {
+        if (Gimbal.aim_status == wait_command) // mode select
             Gimbal.YawRefAngle = Gimbal.YawAngle;
-            Gimbal.FollowCoef = 0.0f;
-        }
-
-        if (Gimbal.aim_status == listen_lidar) // mode select
-        {
-            Gimbal.FollowCoef = 2.0f;
-            CruiseFlag = 0;
-        }
-
-        if (Gimbal.aim_status == find_target)
-        {
-            Gimbal.FollowCoef = 0.0f;
-            CruiseFlag = 0;
-            CatchTime = t;
-
-            AimAssistYaw = TgtPosPredict.YawPosition;
-            AimAssistPitch = TgtPosPredict.PitchPosition;
-
-            if (TgtPosPredict.TrackingCount > 25)
-            {
-                if (AimAssistYaw - INS.Yaw < -180.0f)
-                    Gimbal.YawRefAngle = AimAssistYaw + INS.YawTotalAngle - INS.Yaw + 360.0f;
-                else if (AimAssistYaw - INS.Yaw > 180.0f)
-                    Gimbal.YawRefAngle = AimAssistYaw + INS.YawTotalAngle - INS.Yaw - 360.0f;
-                else
-                    Gimbal.YawRefAngle = AimAssistYaw + INS.YawTotalAngle - INS.Yaw;
-                Gimbal.PitchRefAngle = AimAssistPitch;
-
-                Gimbal.YawRefAngle = float_constrain(Gimbal.YawRefAngle, Gimbal.YawAngle - 10.5f, Gimbal.YawAngle + 10.5f);
-                Gimbal.PitchRefAngle = float_constrain(Gimbal.PitchRefAngle, Gimbal.PitchAngle - 10.5f, Gimbal.PitchAngle + 10.5f);
-            }
-        }
-
-        if (Gimbal.aim_status == lost_target)
-        {
-            Gimbal.FollowCoef = 0.0f;
-            CruiseFlag = 1;
-
-            Gimbal.YawRefAngle = Gimbal.FilteredYawRefAngle;
-            Gimbal.YawRefAngle += Gimbal.YawIncrement * Gimbal.YawCruiseDirection;
-
-            Gimbal.FilteredYawRefAngle = Gimbal.YawRefAngle;
-
-            if (INS.Yaw - Ins_Yaw_Angle_Last > 180.0f)
-                Gimbal.YawCruiseCount--;
-            else if (INS.Yaw - Ins_Yaw_Angle_Last < -180.0f) // CCW
-                Gimbal.YawCruiseCount++;
-
-            if (Gimbal.FilteredYawRefAngle > 880.0f)
-                Gimbal.YawCruiseDirection = -1;
-            if (Gimbal.FilteredYawRefAngle < -215.0f)
-                Gimbal.YawCruiseDirection = 1;
-
-            Ins_Yaw_Angle_Last = INS.Yaw;
-
-            if (Gimbal.PitchRefAngle > GIMBAL_MAX_CRUISEPITCH)
-                Gimbal.PitchCruiseDirection = -1;
-            else if (Gimbal.PitchRefAngle < GIMBAL_MIN_CRUISEPITCH)
-                Gimbal.PitchCruiseDirection = 1;
-
-            Gimbal.PitchRefAngle += Gimbal.PitchIncrement * Gimbal.PitchCruiseDirection;
-
-            Gimbal.FilteredPitchRefAngle = Gimbal.PitchRefAngle * dt / (Gimbal.PitchRefAngleLPF + dt) +
-                                           Gimbal.LastFilteredPitchRefAngle * Gimbal.PitchRefAngleLPF / (Gimbal.PitchRefAngleLPF + dt);
-        }
+        else if (Gimbal.aim_status == listen_lidar)
+            Gimbal.CruiseFlag = 0;
+        else if (Gimbal.aim_status == find_target)
+            Gimbal_Tracking();
+        else if (Gimbal.aim_status == lost_target)
+            Gimbal_Cruise();
     }
 
     if (TgtPosPredict.Status != TgtLost && remote_control.switch_right == Switch_Middle)
-    {
-        CruiseFlag = 0;
-        CatchTime = t;
+        Gimbal_Tracking();
 
-        AimAssistYaw = TgtPosPredict.YawPosition;
-        AimAssistPitch = TgtPosPredict.PitchPosition;
-
-        if (TgtPosPredict.TrackingCount > 35)
-        {
-            if (AimAssistYaw - INS.Yaw < -180.0f)
-                Gimbal.YawRefAngle = AimAssistYaw + INS.YawTotalAngle - INS.Yaw + 360.0f;
-            else if (AimAssistYaw - INS.Yaw > 180.0f)
-                Gimbal.YawRefAngle = AimAssistYaw + INS.YawTotalAngle - INS.Yaw - 360.0f;
-            else
-                Gimbal.YawRefAngle = AimAssistYaw + INS.YawTotalAngle - INS.Yaw;
-            Gimbal.PitchRefAngle = AimAssistPitch;
-
-            Gimbal.YawRefAngle = float_constrain(Gimbal.YawRefAngle, Gimbal.YawAngle - 10.5f, Gimbal.YawAngle + 10.5f);
-            Gimbal.PitchRefAngle = float_constrain(Gimbal.PitchRefAngle, Gimbal.PitchAngle - 10.5f, Gimbal.PitchAngle + 10.5f);
-        }
-    }
-
-    if (CruiseFlag == 0)
+    if (Gimbal.CruiseFlag == 0)
     {
         Gimbal.FilteredYawRefAngle = Gimbal.YawRefAngle;
         Gimbal.FilteredPitchRefAngle = Gimbal.PitchRefAngle;
@@ -378,7 +301,7 @@ static void Gimbal_CtrlValue_Limit(void)
     Gimbal.LastFilteredYawRefAngle = Gimbal.FilteredYawRefAngle;
     Gimbal.LastFilteredPitchRefAngle = Gimbal.FilteredPitchRefAngle;
 
-    if (GlobalDebugMode != GIMBAL_DEBUG && GimbalTuningEnable == 0)
+    if (GlobalDebugMode != GIMBAL_DEBUG)
     {
         switch (Gimbal.Mode)
         {
@@ -521,6 +444,65 @@ static void GimbalSI_Calculate(void)
     // FirstOrderSI_Update(&GimbalSI.PitchSI, Gimbal.PitchMotor.Real_Current, Gimbal.PitchAngularVelocity, dt);
 }
 
+static void Gimbal_Cruise(void)
+{
+    static float Ins_Yaw_Angle_Last;
+
+    Gimbal.FollowCoef = 0.0f;
+    Gimbal.CruiseFlag = 1;
+
+    Gimbal.YawRefAngle = Gimbal.FilteredYawRefAngle;
+    Gimbal.YawRefAngle += Gimbal.YawIncrement * Gimbal.YawCruiseDirection;
+
+    Gimbal.FilteredYawRefAngle = Gimbal.YawRefAngle;
+
+    if (INS.Yaw - Ins_Yaw_Angle_Last > 180.0f)
+        Gimbal.YawCruiseCount--;
+    else if (INS.Yaw - Ins_Yaw_Angle_Last < -180.0f) // CCW
+        Gimbal.YawCruiseCount++;
+
+    if (Gimbal.FilteredYawRefAngle > 880.0f)
+        Gimbal.YawCruiseDirection = -1;
+    if (Gimbal.FilteredYawRefAngle < -215.0f)
+        Gimbal.YawCruiseDirection = 1;
+
+    Ins_Yaw_Angle_Last = INS.Yaw;
+
+    if (Gimbal.PitchRefAngle > GIMBAL_MAX_CRUISEPITCH)
+        Gimbal.PitchCruiseDirection = -1;
+    else if (Gimbal.PitchRefAngle < GIMBAL_MIN_CRUISEPITCH)
+        Gimbal.PitchCruiseDirection = 1;
+
+    Gimbal.PitchRefAngle += Gimbal.PitchIncrement * Gimbal.PitchCruiseDirection;
+
+    Gimbal.FilteredPitchRefAngle = Gimbal.PitchRefAngle * dt / (Gimbal.PitchRefAngleLPF + dt) +
+                                   Gimbal.LastFilteredPitchRefAngle * Gimbal.PitchRefAngleLPF / (Gimbal.PitchRefAngleLPF + dt);
+}
+
+static void Gimbal_Tracking(void)
+{
+    static float AimAssistYaw, AimAssistPitch;
+
+    Gimbal.CruiseFlag = 0;
+    Gimbal.CatchTime = t;
+
+    AimAssistYaw = TgtPosPredict.YawPosition;
+    AimAssistPitch = TgtPosPredict.PitchPosition;
+
+    if (TgtPosPredict.TrackingCount > 25)
+    {
+        if (AimAssistYaw - INS.Yaw < -180.0f)
+            Gimbal.YawRefAngle = AimAssistYaw + INS.YawTotalAngle - INS.Yaw + 360.0f;
+        else if (AimAssistYaw - INS.Yaw > 180.0f)
+            Gimbal.YawRefAngle = AimAssistYaw + INS.YawTotalAngle - INS.Yaw - 360.0f;
+        else
+            Gimbal.YawRefAngle = AimAssistYaw + INS.YawTotalAngle - INS.Yaw;
+        Gimbal.PitchRefAngle = AimAssistPitch;
+
+        Gimbal.YawRefAngle = float_constrain(Gimbal.YawRefAngle, Gimbal.YawAngle - 10.5f, Gimbal.YawAngle + 10.5f);
+        Gimbal.PitchRefAngle = float_constrain(Gimbal.PitchRefAngle, Gimbal.PitchAngle - 10.5f, Gimbal.PitchAngle + 10.5f);
+    }
+}
 void GetAngularVelocity(uint8_t *buff)
 {
     static float angularVelocity;

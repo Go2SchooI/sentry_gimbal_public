@@ -137,6 +137,8 @@ typedef struct _GimbalControl
     Motor_t YawMotor;
     Motor_t PitchMotor;
 
+    float CatchTime;
+
     float YawAngle;
     float PitchAngle;
     float EncoderYawAngle;
@@ -191,6 +193,7 @@ typedef struct _GimbalControl
     uint8_t LaserState;
     uint8_t Mode;
     uint8_t ModeLast;
+    uint8_t CruiseFlag;
 
     uint16_t YawFrontEncoder;        // ��̨������ǰʱYaw��������ֵ
     uint16_t PitchParallelEncoder;   // ��̨ƽ����Yaw����ʱPitch��������ֵ
