@@ -503,6 +503,7 @@ static void Gimbal_Tracking(void)
         Gimbal.PitchRefAngle = float_constrain(Gimbal.PitchRefAngle, Gimbal.PitchAngle - 10.5f, Gimbal.PitchAngle + 10.5f);
     }
 }
+
 void GetAngularVelocity(uint8_t *buff)
 {
     static float angularVelocity;

@@ -115,10 +115,9 @@ static void ChassisEst_Reset(float *new_position, float new_yaw, uint8_t tgtID);
 static void Estimator_Debug(float dt);
 static void AimAssist_Debug(void);
 static float Angle_Process(float angle, float theta, uint8_t armor_num);
-static int8_t Angle_Check(float angle, float theta, uint8_t armor_num);
 static float invSqrt(float x);
 static uint8_t is_Target_Spinning(void);
-static void Get_SpinningFrame(void);
+static void Get_SpinningFrame(float *target_theta, float *pre_target_earthframe);
 /******************************** Task Func ***********************************/
 void AimAssist_Init(UART_HandleTypeDef *huart)
 {
@@ -269,7 +268,7 @@ static void AimAssist_Get_Target(void)
         {
             if (UseTwicePredict)
             {
-                Get_SpinningFrame();
+                Get_SpinningFrame(&TgtPosPredict.PreTargetTheta, TgtPosPredict.PreTargetEarthFrame);
 
                 TgtPosPredict.PitchPosition = Ballistic_Compensation(sqrtf(TgtPosPredict.PreTargetEarthFrame[X] * TgtPosPredict.PreTargetEarthFrame[X] + TgtPosPredict.PreTargetEarthFrame[Y] * TgtPosPredict.PreTargetEarthFrame[Y]),
                                                                      TgtPosPredict.PreTargetEarthFrame[Z], 0,
@@ -283,7 +282,7 @@ static void AimAssist_Get_Target(void)
             TgtPosPredict.ForwardTime += AimAssist.FrameDelayToINS;
             TgtPosPredict.ForwardTime = float_constrain(TgtPosPredict.ForwardTime, 0.005f, 0.75f);
 
-            Get_SpinningFrame();
+            Get_SpinningFrame(&TgtPosPredict.PreTargetTheta, TgtPosPredict.PreTargetEarthFrame);
         }
         else
         {
@@ -601,30 +600,11 @@ uint8_t AimAssist_Shoot_Evaluation(void)
 
     // 根据预测时间和目标状态信息计算目标预测位置
     if (TgtPosPredict.isSpinning == 1)
-    {
-        pre_target_theta = Angle_Process(ChassisPosPredict.theta + ChassisPosPredict.theta_dot * forwardTime, AimAssist.TargetTheta, AimAssist.armor_num);
-        min_distance = 50.0f;
-        for (uint8_t i = 0; i < AimAssist.armor_num; i++)
-        {
-            temp_yaw[i] = STD_RADIAN(pre_target_theta + i * 2 * PI / AimAssist.armor_num);
-            temp_position_x[i] = ChassisPosPredict.Center[X] + ChassisPosPredict.CenterVel[X] * forwardTime - ChassisPosPredict.r * arm_cos_f32(temp_yaw[i]);
-            temp_position_y[i] = ChassisPosPredict.Center[Y] + ChassisPosPredict.CenterVel[Y] * forwardTime - ChassisPosPredict.r * arm_sin_f32(temp_yaw[i]);
-            arm_sqrt_f32(temp_position_x[i] * temp_position_x[i] + temp_position_y[i] * temp_position_y[i], &temp_distance[i]);
-            if (temp_distance[i] < min_distance)
-            {
-                min_distance = temp_distance[i];
-                min_num = i;
-            }
-        }
-        ShootEvaluation.PreTargetEarthFrame[X] = temp_position_x[min_num];
-        ShootEvaluation.PreTargetEarthFrame[Y] = temp_position_y[min_num];
-    }
+        Get_SpinningFrame(&ShootEvaluation.PreTargetTheta, ShootEvaluation.PreTargetEarthFrame);
     else
     {
         for (uint8_t i = 0; i < 3; i++)
-        {
             ShootEvaluation.PreTargetEarthFrame[i] = TgtPosPredict.Position[i] + TgtPosPredict.Velocity[i] * forwardTime;
-        }
     }
 
     ShootEvaluation.YawAngle = atan2f(-ShootEvaluation.PreTargetEarthFrame[X], ShootEvaluation.PreTargetEarthFrame[Y]) * RADIAN_COEF;
@@ -1931,21 +1911,7 @@ static float Angle_Process(float angle, float theta, uint8_t armor_num)
     return angle;
 }
 
-static int8_t Angle_Check(float angle, float theta, uint8_t armor_num)
-{
-    int8_t armor_ID;
-    for (uint8_t i = 0; i < armor_num; i++)
-    {
-        if (fabsf(STD_RADIAN(angle + i * PI * 2 / armor_num - theta)) < PI / armor_num)
-        {
-            armor_ID = i;
-            break;
-        }
-    }
-    return armor_ID;
-}
-
-static void Get_SpinningFrame(void)
+static void Get_SpinningFrame(float *target_theta, float *pre_target_earthframe)
 {
     static float pre_target_theta, temp_yaw[4];
     static float min_distance, temp_position_x[4], temp_position_y[4], temp_position_z[4], temp_distance[4];
@@ -1967,10 +1933,10 @@ static void Get_SpinningFrame(void)
         }
     }
 
-    TgtPosPredict.PreTargetTheta = temp_yaw[min_num];
-    TgtPosPredict.PreTargetEarthFrame[X] = temp_position_x[min_num];
-    TgtPosPredict.PreTargetEarthFrame[Y] = temp_position_y[min_num];
-    TgtPosPredict.PreTargetEarthFrame[Z] = ChassisPosPredict.armor_height[min_num];
+    *target_theta = temp_yaw[min_num];
+    pre_target_earthframe[X] = temp_position_x[min_num];
+    pre_target_earthframe[Y] = temp_position_y[min_num];
+    pre_target_earthframe[Z] = ChassisPosPredict.armor_height[min_num];
 }
 
 static void Estimator_Debug(float dt)
