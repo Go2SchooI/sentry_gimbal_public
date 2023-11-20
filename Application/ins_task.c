@@ -30,14 +30,15 @@ void INS_Init(void)
                     BMI088.Accel[1] * BMI088.Accel[1] +
                     BMI088.Accel[2] * BMI088.Accel[2]) -
               BMI088.gNorm) < 1)
-
+    {
         IMU_Param.scale[X] = 1;
-    IMU_Param.scale[Y] = 1;
-    IMU_Param.scale[Z] = 1;
-    IMU_Param.Yaw = 0.5;
-    IMU_Param.Pitch = 0.0f;
-    IMU_Param.Roll = 0.8;
-    IMU_Param.flag = 1;
+        IMU_Param.scale[Y] = 1;
+        IMU_Param.scale[Z] = 1;
+        IMU_Param.Yaw = 0.5;
+        IMU_Param.Pitch = 0.0f;
+        IMU_Param.Roll = 0.8;
+        IMU_Param.flag = 1;
+    }
 
     IMU_QuaternionEKF_Init(10, 0.001, 1000000 * 10, 0.9996 * 0 + 1, 0);
     // imu heat init
@@ -202,27 +203,39 @@ void QuaternionSlerp(float *qStart, float *qEnd, float *qResult, float t)
     qResult[3] = qStart[3] * k0 + qEnd[3] * k1;
 }
 
-void Insert_qFrame(QuaternionFrame_t *q_frame, float *q, float time_stamp_s)
+/**
+ * @brief          Store the latest quaternion with a timestamp into Array Of Structure as a queue
+ * @param[1]       Array Of Structure including quaternion and timestamp
+ * @param[2]       new quaternion
+ * @param[3]       new timestamp
+ */
+void Insert_qFrame(QuaternionFrame_t *q_frame, float *q, float time_stamp_s) // 以队列形式，将四元数q与对应的时间戳time_stamp_s存入结构体数组q_frame中
 {
+    // 内存函数，将从q_frame首地址开始，大小为队列数缺少一个元素的内存移动到q_frame中第二个元素的地址，即删去队列最后一个元素，空出队列第一个元素
     memmove(q_frame + 1, q_frame, (Q_FRAME_LEN - 1) * sizeof(QuaternionFrame_t));
-    q_frame[0].TimeStamp_s = time_stamp_s;
-    memcpy(q_frame[0].q, q, 4 * sizeof(float));
+    q_frame[0].TimeStamp_s = time_stamp_s;      // 记录时间戳
+    memcpy(q_frame[0].q, q, 4 * sizeof(float)); // 记录四元数
 }
 
-uint16_t Find_qFrame(QuaternionFrame_t *q_frame, float match_time_stamp_s)
+/**
+ * @brief          Find the corresponding quaternion from the queue based on the timestamp
+ * @param[1]       Array Of Structure including quaternion and time_stamp
+ * @param[2]       timestamp
+ */
+uint16_t Find_qFrame(QuaternionFrame_t *q_frame, float match_time_stamp_s) // 根据时间戳，从队列中寻找对应的四元数
 {
     uint16_t num = 0;
-    float min_time_error = fabsf((float)(q_frame[0].TimeStamp_s) - match_time_stamp_s);
+    float min_time_error = 50.0f; // 赋初值
 
-    for (uint16_t i = 0; i < Q_FRAME_LEN; i++)
+    for (uint16_t i = 0; i < Q_FRAME_LEN; i++) // 以队列长度进行循环，即找遍整个队列
     {
-        if (fabsf((float)(q_frame[i].TimeStamp_s) - match_time_stamp_s) < min_time_error)
+        if (fabsf((float)(q_frame[i].TimeStamp_s) - match_time_stamp_s) < min_time_error) // 寻找最小的时间戳差值
         {
             min_time_error = fabsf((float)(q_frame[i].TimeStamp_s) - match_time_stamp_s);
             num = i;
         }
     }
-    return num;
+    return num; // 认为时间戳差值最小的四元数即为所寻找的
 }
 
 /**

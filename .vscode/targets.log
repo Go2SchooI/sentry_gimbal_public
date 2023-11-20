@@ -6,7 +6,7 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Nov 16 18:50:58 2023
+# Make data base, printed on Mon Nov 20 22:14:55 2023
 
 # Variables
 
@@ -80,7 +80,7 @@ PROGRAMW6432 = C:\Program Files
 # environment
 PROGRAMDATA = C:\ProgramData
 # environment
-VSCODE_CWD = C:\Windows\system32
+VSCODE_CWD = C:\Users\86152\AppData\Local\Programs\Microsoft VS Code
 # default
 MAKE_HOST := i686-pc-mingw32
 # environment
@@ -112,7 +112,7 @@ GENICAM_GENTL32_PATH = C:\Program Files\Daheng Imaging\GalaxySDK\GenTL\Win32
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_8492_DUFRAEZNRPBNMKKE
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_27828_PLSZIVAXKEKJDUGP
 # environment
 SW_SIM_MPIT = INTELMPI
 # makefile (from 'Makefile', line 101)
@@ -270,7 +270,7 @@ PROCESSOR_LEVEL = 23
 # environment
 FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
 # environment
-VSCODE_PID = 8492
+VSCODE_PID = 27828
 # environment
 USERDOMAIN_ROAMINGPROFILE = LAPTOP-184AECES
 # variable set hash-table stats:
@@ -283,13 +283,12 @@ USERDOMAIN_ROAMINGPROFILE = LAPTOP-184AECES
 # Directories
 
 # Components (key d:/RoboMaster2024/Sentry_Gimbal_2023-master/Components, mtime 1693385856): 14 files, no impossibilities.
-# . (key d:/RoboMaster2024/Sentry_Gimbal_2023-master, mtime 1700131250): 23 files, no impossibilities.
+# . (key d:/RoboMaster2024/Sentry_Gimbal_2023-master, mtime 1700467271): 23 files, no impossibilities.
 # Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F (key d:/RoboMaster2024/Sentry_Gimbal_2023-master/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F, mtime 1693385856): 4 files, no impossibilities.
 # Application (key d:/RoboMaster2024/Sentry_Gimbal_2023-master/Application, mtime 1693385856): 20 files, no impossibilities.
 # Src (key d:/RoboMaster2024/Sentry_Gimbal_2023-master/Src, mtime 1693385856): 14 files, no impossibilities.
 # Components/Controller (key d:/RoboMaster2024/Sentry_Gimbal_2023-master/Components/Controller, mtime 1693385856): 4 files, no impossibilities.
-# build (key d:/RoboMaster2024/Sentry_Gimbal_2023-master/build, mtime 1693385856):  
-4 files, no impossibilities.
+# build (key d:/RoboMaster2024/Sentry_Gimbal_2023-master/build, mtime 1693385856): 4 files, no impossibilities.
 # Middlewares/Third_Party/FreeRTOS/Source (key d:/RoboMaster2024/Sentry_Gimbal_2023-master/Middlewares/Third_Party/FreeRTOS/Source, mtime 1693385856): 12 files, no impossibilities.
 # Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS (key d:/RoboMaster2024/Sentry_Gimbal_2023-master/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS, mtime 1693385856): 4 files, no impossibilities.
 # Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang (key d:/RoboMaster2024/Sentry_Gimbal_2023-master/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang, mtime 1693385856): 3 files, no impossibilities.
@@ -604,8 +603,8 @@ build/motor.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-build/C_Board_Standard_Robot.elf: build/main.o build/gpio.o build/freertos.o build/can.o build/dma.o build/spi.o build/tim.o build/usart.o build/stm32f4xx_it.o build/stm32f4xx_hal_msp.o build/stm32f4xx_hal_timebase_tim.o build/stm32f4xx_hal_rcc.o build/stm32f4xx_hal_rcc_ex.o build/stm32f4xx_hal_flash.o build/stm32f4xx_hal_flash_ex.o build/stm32f4xx_hal_flash_ramfunc.o build/stm32f4xx_hal_gpio.o build/stm32 
-f4xx_hal_dma_ex.o build/stm32f4xx_hal_dma.o build/stm32f4xx_hal_pwr.o build/stm32f4xx_hal_pwr_ex.o build/stm32f4xx_hal_cortex.o build/stm32f4xx_hal.o build/stm32f4xx_hal_exti.o build/stm32f4xx_hal_can.o build/stm32f4xx_hal_spi.o build/stm32f4xx_hal_tim.o build/stm32f4xx_hal_tim_ex.o build/stm32f4xx_hal_uart.o build/system_stm32f4xx.o build/croutine.o build/event_groups.o build/list.o build/queue.o build/stream_buffer.o build/tasks.o build/timers.o build/cmsis_os.o build/heap_4.o build/port.o build/detect_task.o build/aimassist_task.o build/shoot_task.o build/gimbal_task.o build/ins_task.o build/judgement_info.o build/motor.o build/remote_control.o build/SerialDebug.o build/bsp_CAN.o build/bsp_dwt.o build/bsp_PWM.o build/bsp_usart_idle.o build/kalman_filter.o build/user_lib.o build/system_identification.o build/QuaternionEKF.o build/controller.o build/BMI088driver.o build/BMI088Middleware.o build/startup_stm32f407xx.o Makefile
+build/C_Board_Standard_Robot.elf: build/main.o build/gpio.o build/freertos.o build/can.o build/dma.o build/spi.o build/tim.o build/usart.o build/stm32f4xx_it.o build/stm32f4xx_hal_msp.o build/stm32f4xx_hal_timebase_tim.o build/stm32f4xx_hal_rcc.o build/stm32f4xx_hal_rcc_ex.o build/stm32f4xx_hal_flash.o build/stm32f4xx_hal_flash_ex.o build/stm32f4xx_hal_flash_ramfunc.o build/stm32f4xx_hal_gpio.o build/stm32f4xx_hal_dma_ex.o build/stm32f4xx_hal_dma.o build/stm32f4xx_hal_pwr.o build/stm32f4xx_hal_pwr_ex.o build/stm32f4xx_hal_cortex.o build/stm32f4xx_hal.o build/stm32f4xx_hal_exti.o build/stm32f4xx_hal_can.o build/stm32f4xx_hal_spi.o build/stm32f4xx_hal_tim.o build/stm32f4xx_hal_tim_ex.o build/stm32f4xx_hal_uart.o build/system_stm32f4xx.o build/croutine.o build/event_groups.o build/list.o build/queue.o build/stream_buffer.o build/tasks.o build/timers.o build/cmsis_os.o build 
+/heap_4.o build/port.o build/detect_task.o build/aimassist_task.o build/shoot_task.o build/gimbal_task.o build/ins_task.o build/judgement_info.o build/motor.o build/remote_control.o build/SerialDebug.o build/bsp_CAN.o build/bsp_dwt.o build/bsp_PWM.o build/bsp_usart_idle.o build/kalman_filter.o build/user_lib.o build/system_identification.o build/QuaternionEKF.o build/controller.o build/BMI088driver.o build/BMI088Middleware.o build/startup_stm32f407xx.o Makefile
 #  Implicit rule search has not been done.
 #  Last modified 2023-08-30 16:57:36
 #  File has been updated.
@@ -795,6 +794,6 @@ vpath %.c Application;Bsp;Components;Components/Algorithm;Components/Controller;
 # strcache performance: lookups = 280 / hit rate = 25%
 # hash-table stats:
 # Load=210/8192=3%, Rehash=0, Collisions=17/280=6%
-# Finished Make data base on Thu Nov 16 18:50:58 2023
+# Finished Make data base on Mon Nov 20 22:14:55 2023
 
  

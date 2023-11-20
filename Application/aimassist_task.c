@@ -117,7 +117,7 @@ static void AimAssist_Debug(void);
 static float Angle_Process(float angle, float theta, uint8_t armor_num);
 static float invSqrt(float x);
 static uint8_t is_Target_Spinning(void);
-static void Get_SpinningFrame(float *target_theta, float *pre_target_earthframe);
+static void Get_SpinningFrame(float *target_theta, float *pre_target_earthframe, ChassisPosPredict_t *chassis_pos_predict);
 /******************************** Task Func ***********************************/
 void AimAssist_Init(UART_HandleTypeDef *huart)
 {
@@ -1911,21 +1911,23 @@ static float Angle_Process(float angle, float theta, uint8_t armor_num)
     return angle;
 }
 
-static void Get_SpinningFrame(float *target_theta, float *pre_target_earthframe)
+// 将EKF计算出的目标中心数据（由chassis_pos_predict指向）进行处理，得到外围数据，target_theta，pre_target_earthframe指向返回数据
+static void Get_SpinningFrame(float *target_theta, float *pre_target_earthframe, ChassisPosPredict_t *chassis_pos_predict)
 {
     static float pre_target_theta, temp_yaw[4];
     static float min_distance, temp_position_x[4], temp_position_y[4], temp_position_z[4], temp_distance[4];
     static uint8_t min_num;
 
-    pre_target_theta = Angle_Process(ChassisPosPredict.theta + ChassisPosPredict.theta_dot * TgtPosPredict.ForwardTime, AimAssist.TargetTheta, AimAssist.armor_num);
+    // theta = theta_dot * dt，数据由EKF得到，进行预测与匹配
+    pre_target_theta = Angle_Process(chassis_pos_predict->theta + chassis_pos_predict->theta_dot * TgtPosPredict.ForwardTime, AimAssist.TargetTheta, AimAssist.armor_num);
     // pre_target_theta = STD_RADIAN(ChassisPosPredict.theta + ChassisPosPredict.theta_dot * TgtPosPredict.ForwardTime);
-    min_distance = 50.0f;
-    for (uint8_t i = 0; i < AimAssist.armor_num; i++)
+    min_distance = 50.0f;                             // 设置初值
+    for (uint8_t i = 0; i < AimAssist.armor_num; i++) // 根据中心与外围的几何关系，寻找距离自身最近的目标
     {
-        temp_yaw[i] = STD_RADIAN(pre_target_theta + i * 2 * PI / AimAssist.armor_num);
-        temp_position_x[i] = ChassisPosPredict.Center[X] + ChassisPosPredict.CenterVel[X] * TgtPosPredict.ForwardTime - (1 - HitSpinning.SpinningSpeedStatus) * ChassisPosPredict.r * arm_cos_f32(temp_yaw[i]);
-        temp_position_y[i] = ChassisPosPredict.Center[Y] + ChassisPosPredict.CenterVel[Y] * TgtPosPredict.ForwardTime - (1 - HitSpinning.SpinningSpeedStatus) * ChassisPosPredict.r * arm_sin_f32(temp_yaw[i]);
-        arm_sqrt_f32(temp_position_x[i] * temp_position_x[i] + temp_position_y[i] * temp_position_y[i], &temp_distance[i]);
+        temp_yaw[i] = STD_RADIAN(pre_target_theta + i * 2 * PI / AimAssist.armor_num); // 将角度限制在-pi到pi
+        temp_position_x[i] = chassis_pos_predict->Center[X] + chassis_pos_predict->CenterVel[X] * TgtPosPredict.ForwardTime - (1 - HitSpinning.SpinningSpeedStatus) * chassis_pos_predict->r * arm_cos_f32(temp_yaw[i]);
+        temp_position_y[i] = chassis_pos_predict->Center[Y] + chassis_pos_predict->CenterVel[Y] * TgtPosPredict.ForwardTime - (1 - HitSpinning.SpinningSpeedStatus) * chassis_pos_predict->r * arm_sin_f32(temp_yaw[i]);
+        arm_sqrt_f32(temp_position_x[i] * temp_position_x[i] + temp_position_y[i] * temp_position_y[i], &temp_distance[i]); // 平方和计算距离
         if (temp_distance[i] < min_distance)
         {
             min_distance = temp_distance[i];
@@ -1936,7 +1938,7 @@ static void Get_SpinningFrame(float *target_theta, float *pre_target_earthframe)
     *target_theta = temp_yaw[min_num];
     pre_target_earthframe[X] = temp_position_x[min_num];
     pre_target_earthframe[Y] = temp_position_y[min_num];
-    pre_target_earthframe[Z] = ChassisPosPredict.armor_height[min_num];
+    pre_target_earthframe[Z] = chassis_pos_predict->armor_height[min_num];
 }
 
 static void Estimator_Debug(float dt)
